@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Germanclient</title>
+<style>
+/* ===== GLOBAL ===== */
+body{margin:0;font-family:Arial,sans-serif;background:#0b0b0b;color:white;scroll-behavior:smooth;transition:background 0.5s;}
+a{text-decoration:none;}
+/* ===== HEADER ===== */
+header{
+  background:linear-gradient(90deg,#ff0000,#000,#ffd700);
+  padding:80px 20px;
+  text-align:center;
+  animation:rainbow 15s infinite linear;
+  background-size:300% 100%;
+  border-bottom:5px solid #ffd700;
+  overflow:hidden;
+}
+header h1{margin:0;font-size:4rem;animation:glow 2s infinite alternate;}
+header p{opacity:.85;font-size:1.3rem;margin-top:10px;text-shadow:0 0 5px #000;}
+header .cta{display:inline-block;margin-top:20px;padding:15px 40px;background:#ffd700;color:black;font-weight:700;border-radius:12px;font-size:1.2rem;box-shadow:0 0 15px #ffd700;transition:.3s;}
+header .cta:hover{background:#ff0000;color:white;box-shadow:0 0 25px #ff0000;}
+@keyframes glow{0%{text-shadow:0 0 10px #ff0000;}50%{text-shadow:0 0 20px #ffd700;}100%{text-shadow:0 0 10px #000;}}
+@keyframes rainbow{0%{background-position:0%;}100%{background-position:200%;}}
+/* ===== CATEGORIES ===== */
+.categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:18px;padding:40px;max-width:1320px;margin:auto;}
+.cat{background:#111827;border-radius:16px;padding:22px;text-align:center;cursor:pointer;transition:.3s;border:2px solid #ffd700;color:#ffd700;font-weight:bold;font-size:1rem;box-shadow:0 0 10px #000;}
+.cat:hover{transform:translateY(-5px);background:#1f1f1f;border-color:#ff0000;color:#ff0000;box-shadow:0 0 20px #ff0000;}
+/* ===== SECTIONS & CARDS ===== */
+.section{max-width:1420px;margin:auto;padding:60px 40px;}
+.section h2{margin-bottom:30px;font-size:2.5rem;text-align:center;text-shadow:1px 1px 3px #000;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;}
+.card{background:#111827;border-radius:18px;overflow:hidden;transition:.3s;border:2px solid #ffd700;box-shadow:0 0 10px #000;}
+.card:hover{transform:scale(1.05);box-shadow:0 0 30px #ffd700;}
+.card img{width:100%;height:180px;object-fit:cover;transition:.3s;}
+.card:hover img{transform:scale(1.05);}
+.card .info{padding:15px;}
+.tag{font-size:.8rem;font-weight:bold;}
+.card button{margin-top:10px;padding:10px 15px;border:none;border-radius:8px;background:#ffd700;color:black;font-weight:bold;cursor:pointer;transition:.3s;}
+.card button:hover{background:#ff0000;color:white;box-shadow:0 0 10px #ff0000;}
+/* ===== DOWNLOAD ===== */
+.download{text-align:center;padding:120px 20px;border-top:3px solid #ffd700;}
+.download .buttons{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:20px;}
+.download a{padding:22px 60px;border-radius:15px;font-size:1.6rem;font-weight:bold;transition:.3s;box-shadow:0 0 20px #000;}
+.download .download-btn{background:#ff0000;color:#000;box-shadow:0 0 20px #ff0000;}
+.download .download-btn:hover{background:#ffd700;color:black;box-shadow:0 0 25px #ffd700;}
+.download .discord-btn{background:#7289da;color:white;box-shadow:0 0 20px #7289da;}
+.download .discord-btn:hover{background:#5b6eae;box-shadow:0 0 25px #7289da;}
+/* ===== MODALS ===== */
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);display:none;align-items:center;justify-content:center;z-index:9999;}
+.modal-content{background:#111827;padding:35px;border-radius:28px;max-width:1200px;width:90%;max-height:90%;overflow:auto;border:3px solid #ffd700;box-shadow:0 0 30px #000;}
+.close{float:right;cursor:pointer;font-size:1.6rem;color:#ff0000;}
+.section-divider{width:80%;margin:30px auto;height:4px;background:linear-gradient(90deg,#ff0000,#000,#ffd700);border-radius:6px;}
+.feature-card{background:#111827;border:2px solid #ffd700;border-radius:20px;padding:20px;text-align:center;transition:.3s;box-shadow:0 0 10px #000;}
+.feature-card:hover{transform:translateY(-10px) scale(1.03);box-shadow:0 0 30px #ffd700;}
+footer{text-align:center;padding:20px;opacity:.85;font-size:.9rem;border-top:3px solid #ffd700;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Germanclient</h1>
+<p>Performance • PvP • Cosmetics • Mods • Server • Tools</p>
+<a href="#download" class="cta">Jetzt herunterladen</a>
+<p style="margin-top:10px;font-size:1rem;color:#ffd700;">Tritt unserer Community bei auf <a href="https://discord.gg/ecRKbgjz" target="_blank" style="color:#ffd700;font-weight:bold;">Discord</a></p>
+</header>
+
+<section class="categories">
+<div class="cat" onclick="openModal('m-performance')">⚡ Performance</div>
+<div class="cat" onclick="openModal('m-pvp')">🎮 PvP</div>
+<div class="cat" onclick="openModal('m-cosmetics')">🎨 Cosmetics</div>
+<div class="cat" onclick="openModal('m-mods')">🔧 Mods</div>
+<div class="cat" onclick="openModal('m-server')">🌍 Server</div>
+<div class="cat" onclick="openModal('m-tools')">🤖 Tools</div>
+<div class="cat" onclick="openModal('login-modal')">🔑 Login</div>
+<div class="cat" onclick="openModal('settings-modal')">⚙ Einstellungen</div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="download" id="download">
+<h2>Download Germanclient</h2>
+<p>Windows • Mac • Linux</p>
+<div class="buttons">
+<a href="#" class="download-btn">Jetzt herunterladen</a>
+<a href="https://discord.gg/ecRKbgjz" target="_blank" class="discord-btn">Discord beitreten</a>
+</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- MODALS: Performance, PvP, Mods, Tools, Server, Cosmetics, Login, Settings, Impressum -->
+<!-- Beispiel: Performance -->
+<div id="m-performance" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('m-performance')">✖</span><h2>⚡ Performance Features</h2><div class="grid"><div class="feature-card">FPS Boost</div><div class="feature-card">RAM Optimierung</div><div class="feature-card">Fast Chunk Loading</div><div class="feature-card">Low Input Lag</div><div class="feature-card">Keyboard Optimiert</div></div></div></div>
+
+<!-- PvP Modal -->
+<div id="m-pvp" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('m-pvp')">✖</span><h2>🎮 PvP Features</h2><div class="grid"><div class="feature-card">Keystrokes</div><div class="feature-card">CPS Counter</div><div class="feature-card">HitColor</div><div class="feature-card">Crosshair Editor</div><div class="feature-card">Zoom</div><div class="feature-card">Block Indicators</div></div></div></div>
+
+<!-- Mods Modal -->
+<div id="m-mods" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('m-mods')">✖</span><h2>🔧 Mods Übersicht</h2><div class="grid"><div class="feature-card">Mod Manager</div><div class="feature-card">Auto Update</div><div class="feature-card">Ingame Toggle</div><div class="feature-card">Config Presets</div><div class="feature-card">Hotkey Support</div></div></div></div>
+
+<!-- Tools Modal -->
+<div id="m-tools" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('m-tools')">✖</span><h2>🤖 Tools</h2><div class="grid"><div class="feature-card">Replay Mod</div><div class="feature-card">Screenshot Tool</div><div class="feature-card">Client Stats</div><div class="feature-card">Performance Tracker</div><div class="feature-card">Map Viewer</div></div></div></div>
+
+<!-- Server Modal -->
+<div id="m-server" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('m-server')">✖</span><h2>🌍 Server Infos</h2><div class="grid"><div class="feature-card">IP: play.germanclient.de</div><div class="feature-card">Status: Online</div><div class="feature-card">Spieler: 0/100</div><div class="feature-card">Ping: ...</div><div class="feature-card">Events & Mini-Games</div></div></div></div>
+
+<!-- Cosmetics Modal mit 20 Platzhaltern -->
+<div id="m-cosmetics" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('m-cosmetics')">✖</span><h2>🎨 German Cosmetics Shop</h2><div class="grid">
+<!-- 20 Platzhalter -->
+<div class="card"><img src="https://via.placeholder.com/512x512?text=Dragon+Wings"><div class="info"><b>🔥 Dragon Wings</b><br><span class="tag">LEGENDARY</span><button>Kaufen</button></div></div>
+<div class="card"><img src="https://via.placeholder.com/512x512?text=German+Flag+Cape"><div class="info"><b>🇩🇪 German Flag Cape</b><br><span class="tag">LEGENDARY</span><button>Kaufen</button></div></div>
+<div class="card"><img src="https://via.placeholder.com/512x512?text=Mini+Dragon+Pet"><div class="info"><b>🐉 Mini Dragon Pet</b><br><span class="tag">EPIC</span><button>Kaufen</button></div></div>
+<div class="card"><img src="https://via.placeholder.com/512x512?text=Ice+Cape"><div class="info"><b>💎 Ice Cape</b><br><span class="tag">RARE</span><button>Kaufen</button></div></div>
+<div class="card"><img src="https://via.placeholder.com/512x512?text=Classic+Hat"><div class="info"><b>🎩 Classic Hat</b><br><span class="tag">COMMON</span><button>Kaufen</button></div></div>
+<!-- weitere Platzhalter bis 20 ... -->
+</div></div></div>
+
+<!-- Login Modal -->
+<div id="login-modal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('login-modal')">✖</span><h2>🔑 Login</h2>
+<input type="text" id="username" placeholder="Benutzername / Username" style="padding:10px;width:80%;margin-bottom:10px;"><br>
+<input type="password" id="password" placeholder="Passwort" style="padding:10px;width:80%;margin-bottom:20px;"><br>
+<button onclick="loginUser()" style="padding:12px 30px;background:#ffd700;color:black;border:none;border-radius:8px;cursor:pointer;font-weight:bold;">Login</button>
+<p id="login-msg" style="margin-top:10px;color:#ff5555;"></p></div></div>
+
+<!-- Settings Modal -->
+<div id="settings-modal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('settings-modal')">✖</span><h2>⚙ Einstellungen / Settings</h2>
+<div class="grid">
+<div class="feature-card"><label>🌙 Dark Mode</label><input type="checkbox" id="toggle-darkmode" onchange="toggleDarkMode()" style="transform:scale(1.5);"></div>
+<div class="feature-card"><label>🔊 Sound</label><input type="checkbox" id="toggle-sound" onchange="toggleSound()" style="transform:scale(1.5);"></div>
+<div class="feature-card"><label>🌐 Sprache / Language</label><select id="language-select" onchange="changeLanguage(this.value)"><option value="de">Deutsch</option><option value="en">English</option></select></div>
+</div></div></div>
+
+<!-- Impressum Modal -->
+<div id="m-impressum" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('m-impressum')">✖</span>
+<h2>📄 Impressum</h2>
+<p><b>Germanclient Fanprojekt</b></p>
+<p>Adresse: Kirchstraße 42, Elsdorf 50189, Deutschland</p>
+<p>E-Mail: Germancityr@gmail.com</p>
+<p>Verantwortlich nach § 5 TMG: Taylor Kunze</p>
+<p>Haftungsausschluss: Dieses Projekt ist ein Fanprojekt und steht in keinem Zusammenhang mit Mojang AB oder Microsoft.</p>
+<p>&copy; 2026 Germanclient Fanprojekt</p>
+</div></div>
+
+<footer>© 2026 Germanclient – Fanprojekt, nicht offiziell von Mojang • 
+<a href="https://discord.gg/ecRKbgjz" style="color:#ffd700;font-weight:bold;">Discord</a> • 
+<a href="javascript:openModal('m-impressum')" style="color:#ffd700;font-weight:bold;">Impressum</a></footer>
+
+<script>
+function openModal(id){document.getElementById(id).style.display='flex';}
+function closeModal(id){document.getElementById(id).style.display='none';}
+function loginUser(){const user=document.getElementById('username').value;const pass=document.getElementById('password').value;if(user&&pass){localStorage.setItem('gc_user',user);alert('Erfolgreich angemeldet!');closeModal('login-modal');updateLoginUI();}else{alert('Bitte Name & Passwort eingeben');}}
+function updateLoginUI(){const user=localStorage.getItem('gc_user');if(user){if(!document.getElementById('user-info')){const i=document.createElement('p');i.id='user-info';i.style.cssText='color:#ffd700;font-weight:bold;text-align:center;margin-top:10px;';i.innerText='Angemeldet als: '+user;document.body.prepend(i);}else{document.getElementById('user-info').innerText='Angemeldet als: '+user;}}}
+function toggleDarkMode(){if(document.getElementById('toggle-darkmode').checked){document.body.style.background='#111';localStorage.setItem('gc_darkmode','1');}else{document.body.style.background='#0b0b0b';localStorage.setItem('gc_darkmode','0');}}
+function toggleSound(){if(document.getElementById('toggle-sound').checked){localStorage.setItem('gc_sound','1');alert('Sound aktiviert (Platzhalter)');}else{localStorage.setItem('gc_sound','0');}}
+function changeLanguage(lang){localStorage.setItem('gc_lang',lang);}
+window.onload=function(){updateLoginUI();}
+</script>
+
+</body>
+</html>
